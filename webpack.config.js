@@ -15,7 +15,7 @@ module.exports = {
   output: {
     publicPath: '',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'app.js'
   },
   module: {
     rules: [
@@ -94,11 +94,9 @@ module.exports = {
     ]
   },
   plugins: [
-
     new MiniCssExtractPlugin({
-      filename: "bundle.css"
+      filename: "style.css"
     })
-  
   ],
   devServer: {  // configuration for webpack-dev-server
     contentBase: './dist',  //source of static assets
