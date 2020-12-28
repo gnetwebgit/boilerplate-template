@@ -37,28 +37,28 @@ module.exports = {
         // Loaders are applying from right to left(!)
         // The first loader will be applied after others
         use: [
-                {
-                  // After all CSS loaders we use plugin to do his work.
-                  // It gets all transformed CSS and extracts it into separate
-                  // single bundled file
-                  loader: MiniCssExtractPlugin.loader
-                }, 
-               {
-                 // This loader resolves url() and @imports inside CSS
-                 loader: "css-loader",
-               },
-               {
-                 // Then we apply postCSS fixes like autoprefixer and minifying
-                 loader: "postcss-loader"
-               },
-               {
-                 // First we transform SASS to standard CSS
-                 loader: "sass-loader",
-                 options: {
-                   implementation: require("sass")
-                 }
-               }
-             ]
+            {
+                // After all CSS loaders we use plugin to do his work.
+                // It gets all transformed CSS and extracts it into separate
+                // single bundled file
+                loader: MiniCssExtractPlugin.loader
+            },
+            {
+                // This loader resolves url() and @imports inside CSS
+                loader: "css-loader",
+            },
+            {
+                // Then we apply postCSS fixes like autoprefixer and minifying
+                loader: "postcss-loader"
+            },
+            {
+                // First we transform SASS to standard CSS
+                loader: "sass-loader",
+                options: {
+                    implementation: require("sass")
+                }
+            }
+        ]
       },
       {
         // Now we apply rule for images
@@ -101,7 +101,8 @@ module.exports = {
   devServer: {  // configuration for webpack-dev-server
     contentBase: './dist',  //source of static assets
     port: 7700, // port to run dev-server
-    hot: true,
+    hot: false,
+    inline: false,
   },
 
   // Default mode for Webpack is production.

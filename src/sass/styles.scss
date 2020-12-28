@@ -1,5 +1,27 @@
-$color:blue;
 
-body{
-    background-color: $color;
+
+* {
+    outline: none !important;
 }
+
+// fonts
+@import 'modules/fonts';
+
+// bootstrap
+@import "bootstrap";
+
+
+
+@import 'modules/extend';
+
+
+
+
+
+@media print {
+    .container {
+        width: auto;
+    }
+}
+
+

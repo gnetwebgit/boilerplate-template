@@ -1,0 +1,12 @@
+
+//theme functions
+
+@function rem($value: 16) {
+  $base: 16;
+  $result: $value / $base+rem;
+  @return $result;
+}
+
+
+// Bootstrap functions
+@import "~bootstrap/scss/functions";
