@@ -15,8 +15,10 @@ module.exports = {
   output: {
     publicPath: '',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
+    filename: 'app.js',
+    sourceMapFilename: '[file].map'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -37,38 +39,39 @@ module.exports = {
         // Loaders are applying from right to left(!)
         // The first loader will be applied after others
         use: [
-            {
-                // After all CSS loaders we use plugin to do his work.
-                // It gets all transformed CSS and extracts it into separate
-                // single bundled file
-                loader: MiniCssExtractPlugin.loader
-            },
+            MiniCssExtractPlugin.loader,
             {
                 // This loader resolves url() and @imports inside CSS
                 loader: "css-loader",
+                options: { sourceMap: true },
             },
             {
                 // Then we apply postCSS fixes like autoprefixer and minifying
-                loader: "postcss-loader"
+                loader: "postcss-loader",
+                options: { sourceMap: true },
             },
             {
                 // First we transform SASS to standard CSS
                 loader: "sass-loader",
                 options: {
-                    implementation: require("sass")
+                    sourceMap: true,
+                    implementation: require("sass"),
+                    // sassOptions: {
+                    //     outputStyle: "compressed",
+                    // },
                 }
             }
         ]
       },
       {
         // Now we apply rule for images
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpe?g|gif|svg|WebP)$/,
         use: [
                {
                  // Using file-loader for these files
                  loader: "file-loader",
-                 
-  
+
+
                  // In options we can set different things like format
                  // and directory to save
                  options: {
@@ -80,13 +83,14 @@ module.exports = {
       },
       {
         // Apply rule for fonts files
-        test: /\.(woff|woff2|ttf|otf|eot)$/,
+        test: /\.(woff|woff2|ttf|otf|eot|svg)$/,
         use: [
                {
                  // Using file-loader too
                  loader: "file-loader",
                  options: {
-                   outputPath: 'fonts'
+                   outputPath: 'fonts',
+                   name: '[name].[ext]',
                  }
                }
              ]
@@ -95,7 +99,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style.css"
+      filename: "style.css",
+      chunkFilename: '[id].css'
     })
   ],
   devServer: {  // configuration for webpack-dev-server

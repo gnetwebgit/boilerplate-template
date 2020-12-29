@@ -5,6 +5,15 @@
 // Body
 $body-bg: #fff;
 
+// colors-map
+
+$primary: #0273d9;
+
+// theme-colors-map
+$theme-colors: (
+        "primary":    $primary,
+);
+
 
 // Bootstrap and its default variables
 @import "~bootstrap/scss/variables";

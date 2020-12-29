@@ -1,6 +1,6 @@
 
 
-import '../sass/styles.scss';
+import '../sass/style.scss';
 
 import {
     Alert,
