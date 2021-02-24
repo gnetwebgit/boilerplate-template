@@ -3002,7 +3002,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 
 
-console.log('hellow');
+
+var bootstrap = window.bootstrap = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+
+var toastEl = document.getElementById('liveToast');
+var toast = new bootstrap.Toast(toastEl);
+var myToastEl = document.getElementById('liveToastBtn');
+myToastEl.addEventListener('click', function () {
+  toast.show();
+});
 
 /***/ }),
 

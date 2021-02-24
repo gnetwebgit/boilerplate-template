@@ -1,5 +1,9 @@
 
 
+// Bootstrap and its default variables
+@import "~bootstrap/scss/variables";
+
+
 //theme variables
 
 // Body
@@ -9,11 +13,10 @@ $body-bg: #fff;
 
 $primary: #0273d9;
 
-// theme-colors-map
-$theme-colors: (
-        "primary":    $primary,
+// Create your own map
+$custom-colors: (
+        "primary": $primary
 );
 
-
-// Bootstrap and its default variables
-@import "~bootstrap/scss/variables";
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);

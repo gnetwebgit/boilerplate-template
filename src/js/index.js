@@ -2,6 +2,7 @@
 
 import '../sass/style.scss';
 
+
 import {
     Alert,
     Button,
@@ -16,6 +17,16 @@ import {
     Tooltip
 } from 'bootstrap';
 
-console.log('hellow');
 
 
+const bootstrap = window.bootstrap = require('bootstrap');
+
+
+var toastEl = document.getElementById('liveToast')
+var toast = new bootstrap.Toast(toastEl)
+
+
+var myToastEl = document.getElementById('liveToastBtn')
+myToastEl.addEventListener('click', function () {
+    toast.show()
+});
