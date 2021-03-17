@@ -13,8 +13,48 @@
 
 
 body{
-    font-family: 'MyriadPro';
+    font-family: $font-family-myriadPro;
 }
+
+
+ul, ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+a img,
+:link img {
+    border: 0;
+}
+
+address {
+    font-style: normal;
+}
+
+fieldset {
+    border: 0;
+}
+
+// we don't want the yellow background of webkit
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $font-weight-bold;
+}
+
+
+body{
+    background: red url("../images/img.jpeg");
+}
+
 
 
 

@@ -1,8 +1,6 @@
 
 //theme utilities
 
-// Bootstrap utilities
-@import "~bootstrap/scss/utilities";
 
 $radius: 10;
 
@@ -83,3 +81,6 @@ $radius: 10;
 //    }
 //  }
 //}
+
+// Bootstrap utilities
+@import "~bootstrap/scss/utilities";

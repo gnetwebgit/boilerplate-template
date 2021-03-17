@@ -1,21 +1,27 @@
 
 
-// Bootstrap and its default variables
-@import "~bootstrap/scss/variables";
-
-
 //theme variables
 
-// Body
+// Bodyhover-color
 $body-bg: #fff;
+$body-color: #444;
+
+$font-family-myriadPro: 'MyriadPro';
 
 // colors-map
 
 $primary: #0273d9;
+$light: #e6e6e6;
+
+
+
+// Bootstrap and its default variables
+@import "~bootstrap/scss/variables";
 
 // Create your own map
 $custom-colors: (
-        "primary": $primary
+        "primary": $primary,
+        "light": $light
 );
 
 // Merge the maps

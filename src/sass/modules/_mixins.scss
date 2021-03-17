@@ -1,22 +1,51 @@
 
-// Bootstrap mixins
-@import "~bootstrap/scss/mixins";
-
 
 //theme mixins
 
 
-// transitionTh(0.3s)
-@mixin transitionTh($time){
-  -webkit-transition: all $time ease-in-out 0s;
-  -moz-transition: all $time ease-in-out 0s;
-  -ms-transition: all $time ease-in-out 0s;
-  -o-transition: all $time ease-in-out 0s;
-  transition: all $time ease-in-out 0s;
+
+@use "sass:selector";
+
+/*
+ * Unify Parent Mixin
+ *
+ * How to use:
+ * .form-control {
+ *   @include unify-parent("textarea") {
+ *     min-height: 90px;
+ *   }
+ * }
+ */
+
+@mixin unify-parent($child) {
+  @at-root #{selector.unify(&, $child)} {
+    @content;
+  }
 }
 
-// rounded(10px)
-@mixin rounded($value){
+/*
+ * Transition Mixin
+ *
+ * How to use:
+ * @include transitionTh(background, 0.2s);
+ */
+
+@mixin transitionTh($property, $time) {
+  -webkit-transition: $property $time ease-in-out;
+  -moz-transition: $property $time ease-in-out;
+  -ms-transition: $property $time ease-in-out;
+  -o-transition: $property $time ease-in-out;
+  transition: $property $time ease-in-out;
+}
+
+/*
+ * rounded Mixin
+ *
+ * How to use:
+ * @include rounded(10px);
+ */
+
+@mixin rounded($value) {
   -webkit-border-radius: $value;
   -moz-border-radius: $value;
   -ms-border-radius: $value;
@@ -24,6 +53,63 @@
   border-radius: $value;
 }
 
+
+
+/**
+ * Breakpoint Mixin
+ *
+ * How to use:
+ * @include breakpoint($small, $large) {} min-width and max-width
+ * @include breakpoint($small) {} min-width only
+ * @include breakpoint(null, $large) {} max-width only
+ *
+ * @param min-width
+ * @param max-width
+ */
+@mixin breakpoint($min-width: null, $max-width: null) {
+  @if ($min-width and $max-width) {
+    @media (max-width: $max-width - 1px) and (min-width: $min-width) {
+      @content;
+    }
+  }
+  @else if ($max-width) {
+    @media (max-width: $max-width - 1px) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: $min-width) {
+      @content;
+    }
+  }
+}
+
+/*
+ * position Mixin
+ *
+ * How to use:
+
+ * @include position(relative, null null null 0);
+ */
+
+@mixin position($position: relative, $coordinates: null null null null) {
+  @if type-of($position) == list {
+    $coordinates: $position;
+    $position: relative;
+  }
+
+  $coordinates: unpack($coordinates);
+
+  $offsets: ( top: nth($coordinates, 1), right: nth($coordinates, 2), bottom: nth($coordinates, 3), left: nth($coordinates, 4) );
+
+  position: $position;
+
+  @each $offset, $value in $offsets {
+    @if is-length($value) {
+      #{$offset}: $value;
+    }
+  }
+}
 
 
 
@@ -95,6 +181,9 @@
 //  }
 //}
 
+
+// Bootstrap mixins
+@import "~bootstrap/scss/mixins";
 
 
 

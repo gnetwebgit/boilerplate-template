@@ -30,3 +30,9 @@ var myToastEl = document.getElementById('liveToastBtn')
 myToastEl.addEventListener('click', function () {
     toast.show()
 });
+// Bind to the window
+window.customfunctions = {
+    foo() {
+        console.log("fot");
+    }
+};

@@ -40,11 +40,17 @@ module.exports = {
                 // Loaders are applying from right to left(!)
                 // The first loader will be applied after others
                 use: [
-                    MiniCssExtractPlugin.loader,
+
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        },
+                    },
                     {
                         // This loader resolves url() and @imports inside CSS
                         loader: "css-loader",
-                        options: { sourceMap: true },
+                        options: { sourceMap: true, url: true },
                     },
                     {
                         // Then we apply postCSS fixes like autoprefixer and minifying
@@ -100,7 +106,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "style.css",
+            filename: "css/style.css",
             chunkFilename: '[id].css'
         })
     ],
